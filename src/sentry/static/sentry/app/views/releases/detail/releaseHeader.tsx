@@ -27,11 +27,10 @@ import {getAggregateAlias} from 'app/utils/discover/fields';
 import {formatAbbreviatedNumber, formatVersion} from 'app/utils/formatters';
 import {getTermHelp} from 'app/views/performance/data';
 
-import {getSessionTermDescription} from '../utils/sessionTerm';
+import {getSessionTermDescription, sessionTerm} from '../utils/sessionTerm';
 
 import ReleaseActions from './releaseActions';
 import ReleaseStat from './releaseStat';
-import {getSessionTermDescription, sessionTerm} from '../utils/sessionTerm';
 
 type Props = {
   location: Location;
@@ -120,11 +119,7 @@ const ReleaseHeader = ({
           </ReleaseStat>
           {hasHealthData && (
             <ReleaseStat
-<<<<<<< HEAD
-              label={t('Crashes')}
-=======
               label={sessionTerm.crashes}
->>>>>>> parent 2a30ac698d80403fdb6d9b7b4a11dd2e45e9f902
               help={getSessionTermDescription('crashes', project.platform)}
             >
               <Count value={sessionsCrashed} />
