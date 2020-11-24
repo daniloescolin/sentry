@@ -34,7 +34,7 @@ const mobileTermsDescription = {
 };
 
 const desktopTermDescriptions = {
-  crashed: t('The application crashed with a hard crashed (eg. segfault)'),
+  crashed: t('The application crashed with a hard crash (eg. segfault)'),
   [sessionTerm.abnormal]: t(
     'The application did not properly end the session, for example, due to force-quit'
   ),
@@ -90,12 +90,12 @@ function getTermDescriptions(platform: PlatformKey | null) {
       return {
         ...commonTermsDescription,
         [sessionTerm.crashed]: t(
-          "During session an error with mechanism.handled===false occured which is 'onerror' on 'unhandledrejection' handler"
+          "During session an error with mechanism.handled===false occurred which is 'onerror' on 'unhandledrejection' handler"
         ),
         [sessionTerm.abnormal]: t('Non applicable for Javascript'),
         [sessionTerm.healthy]: t('No errors were captured during session life-time'),
         [sessionTerm.errored]: t(
-          'During the session at least one error occurred that did not bubble up to the global handlers, not resulting in the application loading process crashing.'
+          'During the session at least one error occurred that did not bubble up to the global handler. The application loading process did not crash'
         ),
         [sessionTerm.unhandled]:
           "An error bubbled up to the global 'onerror' or 'onunhandledrejection' handler",
