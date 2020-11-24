@@ -215,15 +215,15 @@ class HealthChart extends React.Component<Props> {
           legendIndex: number;
           name: string;
         }): string => {
-          const serieNameDesc = this.getLegendTooltipDescription(params.name);
+          const seriesNameDesc = this.getLegendTooltipDescription(params.name);
 
-          if (!serieNameDesc) {
+          if (!seriesNameDesc) {
             return '';
           }
 
           return [
             '<div class="tooltip-description">',
-            `<div>${serieNameDesc}</div>`,
+            `<div>${seriesNameDesc}</div>`,
             '</div>',
           ].join('');
         },
