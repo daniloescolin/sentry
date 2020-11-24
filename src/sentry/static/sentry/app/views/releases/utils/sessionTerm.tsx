@@ -44,7 +44,7 @@ const desktopTermDescriptions = {
   [sessionTerm.errored]: t(
     'The application exited normally but observed error events while running'
   ),
-  [sessionTerm.unhandled]: t('The application crashed with a hard crashed'),
+  [sessionTerm.unhandled]: t('The application crashed with a hard crash'),
 };
 
 function getTermDescriptions(platform: PlatformKey | null) {
