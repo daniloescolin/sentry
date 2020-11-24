@@ -93,7 +93,7 @@ function getTermDescriptions(platform: PlatformKey | null) {
           "During session an error with mechanism.handled===false occured which is 'onerror' on 'unhandledrejection' handler"
         ),
         [sessionTerm.abnormal]: t('Non applicable for Javascript'),
-        [sessionTerm.healthy]: t('No errors captured during session life-time'),
+        [sessionTerm.healthy]: t('No errors were captured during session life-time'),
         [sessionTerm.errored]: t(
           'During the session at least one error occurred that did not bubble up to the global handlers, not resulting in the application loading process crashing.'
         ),
