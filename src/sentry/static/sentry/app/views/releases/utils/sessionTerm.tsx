@@ -23,13 +23,15 @@ export const sessionTerm = {
   [SessionTerm.UNHANDLED]: t('Unhandled'),
 };
 
-const commonTermsDescription = {
+// This should never be used directly (except in tests)
+export const commonTermsDescription = {
   [SessionTerm.CRASHES]: t('Number of sessions with a crashed state'),
   [SessionTerm.CRASH_FREE_USERS]: t('Number of unique users with non-crashed sessions'),
   [SessionTerm.CRASH_FREE_SESSIONS]: t('Number of non-crashed sessions'),
 };
 
-const mobileTermsDescription = {
+// This should never be used directly (except in tests)
+export const mobileTermsDescription = {
   [SessionTerm.CRASHED]: t(
     'The process was terminated due to an unhandled exception or a request to the server that ended with an error'
   ),
@@ -44,7 +46,8 @@ const mobileTermsDescription = {
   [SessionTerm.UNHANDLED]: t('Not handled by user code'),
 };
 
-const desktopTermDescriptions = {
+// This should never be used directly (except in tests)
+export const desktopTermDescriptions = {
   crashed: t('The application crashed with a hard crash (eg. segfault)'),
   [SessionTerm.ABNORMAL]: t(
     'The application did not properly end the session, for example, due to force-quit'
@@ -59,7 +62,13 @@ const desktopTermDescriptions = {
 };
 
 function getTermDescriptions(platform: PlatformKey | null) {
-  const technology = platform?.includes('javascript') ? platform.split('-')[0] : platform;
+  const technology =
+    platform === 'react-native' ||
+    platform === 'java-spring' ||
+    platform === 'apple-ios' ||
+    platform === 'dotnet-aspnetcore'
+      ? platform
+      : platform?.split('-')[0];
 
   switch (technology) {
     case 'dotnet':
@@ -136,6 +145,9 @@ function getTermDescriptions(platform: PlatformKey | null) {
   }
 }
 
-export function getSessionTermDescription(term: SessionTerm, platform: PlatformKey) {
+export function getSessionTermDescription(
+  term: SessionTerm,
+  platform: PlatformKey | null
+) {
   return getTermDescriptions(platform)[term];
 }
