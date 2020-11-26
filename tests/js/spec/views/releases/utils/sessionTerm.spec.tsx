@@ -567,7 +567,7 @@ describe('Release Health Session Term', function () {
     // Crash Free Sessions
     const crashFreeSessionTerm = getSessionTermDescription(
       SessionTerm.CRASH_FREE_SESSIONS,
-      'node-express'
+      'javascript'
     );
     expect(crashFreeSessionTerm).toEqual(commonTermsDescription['crash-free-sessions']);
 
