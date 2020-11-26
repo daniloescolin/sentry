@@ -854,7 +854,7 @@ describe('Release Health Session Term', function () {
     // Crash Free Users
     const crashFreeUsersSessionTerm = getSessionTermDescription(
       SessionTerm.CRASH_FREE_USERS,
-    null
+      null
     );
     expect(crashFreeUsersSessionTerm).toEqual(commonTermsDescription['crash-free-users']);
 
