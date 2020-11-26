@@ -53,7 +53,8 @@ const ReleaseHeader = ({
 }: Props) => {
   const {version, newGroups, url, lastDeploy, dateCreated} = release;
   const {commitCount, commitFilesChanged, releaseFileCount} = releaseMeta;
-  const {hasHealthData, sessionsCrashed} = project.healthData;
+  const {hasHealthData} = project;
+  const {sessionsCrashed} = project.healthData;
 
   const releasePath = `/organizations/${organization.slug}/releases/${encodeURIComponent(
     version
