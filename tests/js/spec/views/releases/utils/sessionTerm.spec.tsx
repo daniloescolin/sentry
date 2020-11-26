@@ -758,7 +758,7 @@ describe('Release Health Session Term', function () {
     expect(crashesSessionTerm).toEqual(commonTermsDescription.crashes);
 
     // Crashed
-    const crashedSessionTerm = getSessionTermDescription(SessionTerm.CRASHED, 'minidump');
+    const crashedSessionTerm = getSessionTermDescription(SessionTerm.CRASHED, 'native');
     expect(crashedSessionTerm).toEqual(desktopTermDescriptions.crashed);
 
     // Crash Free Users
