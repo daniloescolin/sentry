@@ -4,9 +4,9 @@ import {mountWithTheme} from 'sentry-test/enzyme';
 import {initializeOrg} from 'sentry-test/initializeOrg';
 
 import {PlatformKey} from 'app/data/platformCategories';
-import ReleaseHeader from 'app/views/releases/detail/releaseHeader';
 import EventView from 'app/utils/discover/eventView';
 import {DEFAULT_EVENT_VIEW} from 'app/views/eventsV2/data';
+import ReleaseHeader from 'app/views/releases/detail/releaseHeader';
 import {
   getSessionTermDescription,
   SessionTerm,
