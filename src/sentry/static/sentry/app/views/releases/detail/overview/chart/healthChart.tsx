@@ -16,7 +16,11 @@ import {getExactDuration} from 'app/utils/formatters';
 import {decodeList} from 'app/utils/queryString';
 import theme from 'app/utils/theme';
 
-import {getSessionTermDescription, sessionTerm} from '../../../utils/sessionTerm';
+import {
+  getSessionTermDescription,
+  SessionTerm,
+  sessionTerm,
+} from '../../../utils/sessionTerm';
 
 import {YAxis} from './releaseChartControls';
 
@@ -171,17 +175,17 @@ class HealthChart extends React.Component<Props> {
 
     switch (serieName) {
       case sessionTerm.crashed:
-        return getSessionTermDescription('crashed', platform);
+        return getSessionTermDescription(SessionTerm.CRASHED, platform);
       case sessionTerm.abnormal:
-        return getSessionTermDescription('abnormal', platform);
+        return getSessionTermDescription(SessionTerm.ABNORMAL, platform);
       case sessionTerm.errored:
-        return getSessionTermDescription('errored', platform);
+        return getSessionTermDescription(SessionTerm.ERRORED, platform);
       case sessionTerm.healthy:
-        return getSessionTermDescription('healthy', platform);
+        return getSessionTermDescription(SessionTerm.HEALTHY, platform);
       case sessionTerm['crash-free-users']:
-        return getSessionTermDescription('crash-free-users', platform);
+        return getSessionTermDescription(SessionTerm.CRASH_FREE_USERS, platform);
       case sessionTerm['crash-free-sessions']:
-        return getSessionTermDescription('crash-free-sessions', platform);
+        return getSessionTermDescription(SessionTerm.CRASH_FREE_SESSIONS, platform);
       default:
         return '';
     }

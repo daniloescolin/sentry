@@ -1,50 +1,61 @@
 import {PlatformKey} from 'app/data/platformCategories';
 import {t} from 'app/locale';
 
+export enum SessionTerm {
+  CRASHES = 'crashes',
+  CRASHED = 'crashed',
+  ABNORMAL = 'abnormal',
+  CRASH_FREE_USERS = 'crash-free-users',
+  CRASH_FREE_SESSIONS = 'crash-free-sessions',
+  HEALTHY = 'healthy',
+  ERRORED = 'errored',
+  UNHANDLED = 'unhandled',
+}
+
 export const sessionTerm = {
-  crashes: t('Crashes'),
-  crashed: t('Crashed'),
-  abnormal: t('Abnormal'),
-  'crash-free-users': t('Crash Free Users'),
-  'crash-free-sessions': t('Crash Free Sessions'),
-  healthy: t('Healthy'),
-  errored: t('Errored'),
-  unhandled: t('Unhandled'),
+  [SessionTerm.CRASHES]: t('Crashes'),
+  [SessionTerm.CRASHED]: t('Crashed'),
+  [SessionTerm.ABNORMAL]: t('Abnormal'),
+  [SessionTerm.CRASH_FREE_USERS]: t('Crash Free Users'),
+  [SessionTerm.CRASH_FREE_SESSIONS]: t('Crash Free Sessions'),
+  [SessionTerm.HEALTHY]: t('Healthy'),
+  [SessionTerm.ERRORED]: t('Errored'),
+  [SessionTerm.UNHANDLED]: t('Unhandled'),
 };
 
 const commonTermsDescription = {
-  [sessionTerm.crashes]: t('Number of sessions with a crashed state'),
-  [sessionTerm['crash-free-users']]: t(
-    'Number of unique users with non-crashed sessions'
-  ),
-  [sessionTerm['crash-free-sessions']]: t('Number of non-crashed sessions'),
+  [SessionTerm.CRASHES]: t('Number of sessions with a crashed state'),
+  [SessionTerm.CRASH_FREE_USERS]: t('Number of unique users with non-crashed sessions'),
+  [SessionTerm.CRASH_FREE_SESSIONS]: t('Number of non-crashed sessions'),
 };
 
 const mobileTermsDescription = {
-  [sessionTerm.crashed]: t(
+  [SessionTerm.CRASHED]: t(
     'The process was terminated due to an unhandled exception or a request to the server that ended with an error'
   ),
-  'crash-free-sessions': t('Number of unique sessions that did not experience a crash'),
-  [sessionTerm.abnormal]: t(
+  [SessionTerm.CRASH_FREE_SESSIONS]: t(
+    'Number of unique sessions that did not experience a crash'
+  ),
+  [SessionTerm.ABNORMAL]: t(
     'An unknown session exit. Like due to loss of power or killed by the operating system'
   ),
-  [sessionTerm.healthy]: t('A session without any errors'),
-  [sessionTerm.errored]: t('A crash which experienced errors'),
-  [sessionTerm.unhandled]: t('Not handled by user code'),
+  [SessionTerm.HEALTHY]: t('A session without any errors'),
+  [SessionTerm.ERRORED]: t('A crash which experienced errors'),
+  [SessionTerm.UNHANDLED]: t('Not handled by user code'),
 };
 
 const desktopTermDescriptions = {
   crashed: t('The application crashed with a hard crash (eg. segfault)'),
-  [sessionTerm.abnormal]: t(
+  [SessionTerm.ABNORMAL]: t(
     'The application did not properly end the session, for example, due to force-quit'
   ),
-  [sessionTerm.healthy]: t(
+  [SessionTerm.HEALTHY]: t(
     'The application exited normally and did not observe any errors'
   ),
-  [sessionTerm.errored]: t(
+  [SessionTerm.ERRORED]: t(
     'The application exited normally but observed error events while running'
   ),
-  [sessionTerm.unhandled]: t('The application crashed with a hard crash'),
+  [SessionTerm.UNHANDLED]: t('The application crashed with a hard crash'),
 };
 
 function getTermDescriptions(platform: PlatformKey | null) {
@@ -62,7 +73,7 @@ function getTermDescriptions(platform: PlatformKey | null) {
       return {
         ...commonTermsDescription,
         ...mobileTermsDescription,
-        [sessionTerm.crashes]: t(
+        [SessionTerm.CRASHES]: t(
           'A request that resulted in an unhandled exception and hence a Server Error response'
         ),
       };
@@ -73,7 +84,7 @@ function getTermDescriptions(platform: PlatformKey | null) {
       return {
         ...commonTermsDescription,
         ...mobileTermsDescription,
-        [sessionTerm.crashed]: t(
+        [SessionTerm.CRASHED]: t(
           'An unhandled exception that resulted in the application crashing'
         ),
       };
@@ -82,22 +93,22 @@ function getTermDescriptions(platform: PlatformKey | null) {
       return {
         ...commonTermsDescription,
         ...mobileTermsDescription,
-        [sessionTerm.crashed]: t('An error that resulted in the application crashing'),
+        [SessionTerm.CRASHED]: t('An error that resulted in the application crashing'),
       };
     }
     case 'node':
     case 'javascript':
       return {
         ...commonTermsDescription,
-        [sessionTerm.crashed]: t(
+        [SessionTerm.CRASHED]: t(
           "During session an error with mechanism.handled===false occurred which is 'onerror' on 'unhandledrejection' handler"
         ),
-        [sessionTerm.abnormal]: t('Non applicable for Javascript'),
-        [sessionTerm.healthy]: t('No errors were captured during session life-time'),
-        [sessionTerm.errored]: t(
+        [SessionTerm.ABNORMAL]: t('Non applicable for Javascript'),
+        [SessionTerm.HEALTHY]: t('No errors were captured during session life-time'),
+        [SessionTerm.ERRORED]: t(
           'During the session at least one error occurred that did not bubble up to the global handler. The application loading process did not crash'
         ),
-        [sessionTerm.unhandled]:
+        [SessionTerm.UNHANDLED]:
           "An error bubbled up to the global 'onerror' or 'onunhandledrejection' handler",
       };
     case 'apple-ios':
@@ -111,22 +122,20 @@ function getTermDescriptions(platform: PlatformKey | null) {
       return {
         ...commonTermsDescription,
         ...desktopTermDescriptions,
-        [sessionTerm.crashed]: t('The application had an unrecovable error (a panic)'),
+        [SessionTerm.CRASHED]: t('The application had an unrecovable error (a panic)'),
       };
     default:
       return {
         ...commonTermsDescription,
-        [sessionTerm.crashed]: t('Number of users who experienced an unhandled error'),
-        [sessionTerm.abnormal]: t('An unknown session exit'),
-        [sessionTerm.healthy]: mobileTermsDescription.healthy,
-        [sessionTerm.errored]: mobileTermsDescription.errored,
-        [sessionTerm.unhandled]: mobileTermsDescription.unhandled,
+        [SessionTerm.CRASHED]: t('Number of users who experienced an unhandled error'),
+        [SessionTerm.ABNORMAL]: t('An unknown session exit'),
+        [SessionTerm.HEALTHY]: mobileTermsDescription.healthy,
+        [SessionTerm.ERRORED]: mobileTermsDescription.errored,
+        [SessionTerm.UNHANDLED]: mobileTermsDescription.unhandled,
       };
   }
 }
 
-type Term = keyof typeof sessionTerm;
-
-export function getSessionTermDescription(term: Term, platform: PlatformKey) {
+export function getSessionTermDescription(term: SessionTerm, platform: PlatformKey) {
   return getTermDescriptions(platform)[term];
 }
